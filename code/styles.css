@@ -4,57 +4,69 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-.logo {
+header {
+  height: 120px;
+}
+header .logo {
   position: absolute;
+  display: inline-block;
+  width: 280px;
+  height: 100px;
   top: 1%;
   left: 1%;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 5px;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  vertical-align: middle;
 }
-.logo form {
-  width: 260px;
-  height: 80px;
-  padding: 1em;
-  text-align: right;
-  white-space: nowrap;
-}
-.logo form img {
+header .logo img {
   display: inline-block;
-  width: 100px;
+  width: 120px;
   height: auto;
-  text-align: left;
 }
-.logo form h1 {
+header .logo span {
   display: inline-block;
-  vertical-align: top;
+  text-align: right;
+}
+header .logo span h1 {
   margin: 0%;
 }
-.logo form h1 a {
+header .logo span h1 a {
   text-decoration: none;
   color: #ddd;
   font-size: 20px;
 }
-.logo form h1 a:hover {
+header .logo span h1 a:hover {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2509803922);
 }
-.logo form h1 a:active {
+header .logo span h1 a:active {
   text-shadow: none;
 }
-.logo form h2 {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0%;
-}
-
-.user_welcome {
+header .user_welcome {
   position: absolute;
+  display: inline-block;
+  width: 280px;
+  height: 100px;
   transform: translate(-50%, 0%);
   top: 2%;
   left: 50%;
-  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 5px;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  vertical-align: middle;
 }
-.user_welcome form {
-  height: 40px;
-}
-
 .auth {
   position: absolute;
   transform: translate(-50%, -50%);
