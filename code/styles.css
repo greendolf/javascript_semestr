@@ -5,17 +5,19 @@ body {
 }
 
 header {
-  height: 120px;
+  display: block;
+  position: relative;
+  height: 160px;
 }
 header .logo {
   position: absolute;
+  top: 1%;
+  left: 1%;
   display: inline-block;
   width: 280px;
   height: 100px;
-  top: 1%;
-  left: 1%;
   background: rgba(255, 255, 255, 0.3);
-  padding: 5px;
+  padding: 10px;
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -29,35 +31,143 @@ header .logo img {
   display: inline-block;
   width: 120px;
   height: auto;
+  vertical-align: middle;
 }
-header .logo span {
+header .logo h1 {
+  margin: 0%;
   display: inline-block;
   text-align: right;
+  vertical-align: middle;
 }
-header .logo span h1 {
-  margin: 0%;
-}
-header .logo span h1 a {
+header .logo h1 a {
   text-decoration: none;
   color: #ddd;
   font-size: 20px;
 }
-header .logo span h1 a:hover {
+header .logo h1 a:hover {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2509803922);
 }
-header .logo span h1 a:active {
+header .logo h1 a:active {
   text-shadow: none;
 }
 header .user_welcome {
   position: absolute;
-  display: inline-block;
-  width: 280px;
-  height: 100px;
-  transform: translate(-50%, 0%);
-  top: 2%;
+  top: 1%;
   left: 50%;
+  display: inline-block;
+  width: 320px;
+  transform: translate(-50%, 0%);
+  vertical-align: middle;
+}
+header .user_welcome h1 {
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  display: block;
+}
+
+.city_section {
+  position: absolute;
+  transform: translate(-50%, 0%);
+  top: 40%;
+  left: 50%;
+  width: 320px;
+  height: auto;
+  padding: 10px;
+}
+.city_section h1 {
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin: 0%;
+  width: 180px;
   background: rgba(255, 255, 255, 0.3);
-  padding: 5px;
+  padding: 0.5em;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+.list label {
+  display: block;
+  text-align: left;
+  margin: 1%;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.list label input {
+  display: inline;
+  margin: 0%;
+}
+
+.auth {
+  position: absolute;
+  display: inline;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 240px;
+  align-items: center;
+}
+.auth input[type=text] {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 20%;
+}
+.auth input[type=button] {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 20%;
+}
+
+.choice {
+  display: flex;
+  width: auto;
+  margin-top: 20px;
+  padding: 10px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.choice input {
+  font-size: 1.5rem;
+}
+
+section {
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -65,19 +175,43 @@ header .user_welcome {
           backdrop-filter: blur(10px);
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
-  vertical-align: middle;
 }
-.auth {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+
+input {
+  background: transparent;
+  padding: 1em;
+  margin-bottom: 2em;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5000px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+input:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+}
+input[type=text]:focus {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+}
+input[type=button]:hover {
+  cursor: pointer;
+}
+input[type=button]:active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 form {
   background: rgba(255, 255, 255, 0.3);
   padding: 3em;
-  height: 140px;
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -95,43 +229,6 @@ form p {
   font-size: 1.4rem;
   margin-top: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-form input {
-  background: transparent;
-  width: 180px;
-  padding: 1em;
-  margin-bottom: 2em;
-  border: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5000px;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  font-family: Montserrat, sans-serif;
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-form input:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
-}
-form input[type=text]:focus {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
-}
-form input[type=button] {
-  margin-top: 10px;
-  width: 150px;
-  font-size: 1rem;
-}
-form input[type=button]:hover {
-  cursor: pointer;
-}
-form input[type=button]:active {
-  background: rgba(255, 255, 255, 0.2);
 }
 form:hover {
   margin: 4px;
