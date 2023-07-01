@@ -1,3 +1,22 @@
+const conditions = {
+  clear: "ясно",
+  "partly-cloudy": "малооблачно",
+  cloudy: "облачно с прояснениями",
+  overcast: "пасмурно",
+  "light-rain": "небольшой дождь",
+  rain: "дождь",
+  "heavy-rain": "сильный дождь",
+  showers: "ливень",
+  "wet-snow": "дождь со снегом",
+  "light-snow": "небольшой снег",
+  snow: "снег",
+  "snow-showers": "снегопад",
+  hail: "град",
+  thunderstorm: "гроза",
+  "thunderstorm-with-rain": "дождь с грозой",
+  "thunderstorm-with-hail": "гроза с градом",
+};
+
 async function fetchWeatherForecast(lat, lon, limit) {
   const key = "04cf65d7-2c90-4407-970d-056087074c02";
   const url = `https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}&limit=${limit}&lang=ru_RU`;
@@ -32,45 +51,51 @@ export async function fetchCords(location) {
   }
 }
 
-export async function getForecast(city) {
-  fetchCords(city).then((cords) => {
-    fetchWeatherForecast(cords[0], cords[1])
-      .then((data) => {
-        const forecast = data.forecasts.map((forecast) => ({
-          date: forecast.date,
-          temperature: forecast.parts.day_short.temp,
-          condition: forecast.parts.day_short.condition,
-        }));
-        for (let i = 0; i < 7; i++) {
-          console.log(forecast[i]);
-        }
-        return forecast;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
+export async function getForecast(city, limit) {
+  let cords = await fetchCords(city);
+  let data = await fetchWeatherForecast(cords[0], cords[1], limit);
+  const forecast = data.forecasts.map((forecast) => [
+    forecast.date,
+    forecast.parts.day.temp_avg + " градусов",
+    forecast.parts.day.feels_like + " градусов",
+    conditions[forecast.parts.day.condition],
+    forecast.parts.day.wind_speed + " м/с",
+    forecast.parts.day.humidity + "%",
+  ]);
+  console.log("forecast: ", forecast);
+  return forecast;
+  // if (time.getDate() < 10) {
+  //   date = "0" + time.getDate() + ".";
+  // } else {
+  //   date = time.getDate() + ".";
+  // }
+  // if (time.getMonth() < 10) {
+  //   date += "0" + (time.getMonth() + 1);
+  // } else {
+  //   date += time.getMonth();
+  // }
 }
 
 export async function getCurrentWeather(city) {
-  await fetchCords(city).then((cords) => {
-    fetchWeatherForecast(cords[0], cords[1], 1)
-      .then((data) => {
-        const current = [
-          data.now_dt,
-          data.fact.temp,
-          data.fact.feels_like,
-          data.fact.condition,
-          data.fact.wind_speed,
-          data.fact.humidity,
-        ];
-        console.log("current: ", current);
-        return current;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
+  let cords = await fetchCords(city);
+  let data = await fetchWeatherForecast(cords[0], cords[1], 1);
+  let time = new Date(data.now * 1000);
+  let date = time.getHours() + ":";
+  if (time.getMinutes() < 10) {
+    date += "0" + time.getMinutes();
+  } else {
+    date += time.getMinutes();
+  }
+  const current = [
+    date,
+    data.fact.temp + " градусов",
+    data.fact.feels_like + " градусов",
+    conditions[data.fact.condition],
+    data.fact.wind_speed + " м/с",
+    data.fact.humidity + "%",
+  ];
+  console.log("current: ", current);
+  return current;
 }
 
 // getForecast("12rfar");

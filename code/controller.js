@@ -86,96 +86,17 @@ window.onload = () => {
   authForm.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       welcome(user.value);
-      firstCityChoice();
+      cityChoice();
     }
   });
 
   resume_btn.addEventListener("click", () => {
     welcome(user.value);
-    firstCityChoice();
+    cityChoice();
   });
 };
 
-// Выбор города в первый раз
-function firstCityChoice() {
-  clear();
-  main = getMain();
-  cityForm = create("section", main, [["class", "auth"]]);
-
-  city = create("input", cityForm, [
-    ["id", "city_name"],
-    ["type", "text"],
-    ["placeholder", "Введите город"],
-  ]);
-
-  resume_btn = create("input", cityForm, [
-    ["type", "button"],
-    ["value", "Продолжить"],
-    ["style", "font-size: 0.8em"],
-  ]);
-
-  cityForm.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      setCity(city.value).then((res) => {
-        if (res) {
-          mainPage();
-        } else {
-          alert("Город введён неверно");
-        }
-      });
-    }
-  });
-  resume_btn.addEventListener("click", () => {
-    setCity(city.value).then((res) => {
-      if (res) {
-        mainPage();
-      } else {
-        alert("Город введён неверно");
-      }
-    });
-  });
-}
-
-const filters = [
-  "Дата: ",
-  "Температура",
-  "Ощущается как",
-  "Погодное описание",
-  "Скорость ветра",
-  "Влажность",
-];
-
-async function getCurrent(city) {
-  clear();
-  res = await (await import("./model.js")).getCurrentWeather(city).then(() => {
-    forecasts = create("section", main, [["class", "forecasts"]]);
-    forecast = create("section", forecasts);
-    for (let j = 0; j < 6; j++) {
-      p = create("p", forecast, [["id", `weather-${j}`]]);
-      p.innerHTML = `${res[j]}`;
-    }
-    changeCheckboxes(true);
-  });
-}
-
-function fillForecastsPage() {
-  clear();
-  main = getMain();
-  log(arguments);
-  forecasts = create("section", main, [["class", "forecasts"]]);
-  for (let i = 0; i < arguments.length; i++) {
-    forecast = create("section", forecasts);
-    for (let j = 0; j < 5; j++) {
-      p = create("p", forecast, [["id", `weather-${j}`]]);
-      p.innerHTML = `${arguments[i][j]}`;
-    }
-  }
-}
-
-// Основная страница
-function mainPage() {
-  clear();
-  main = getMain();
+function setCheckboxes() {
   list = create("ul", header, [["class", "list"]]);
   temp_label = create("label", list);
   temp = create("input", temp_label, [
@@ -222,8 +143,115 @@ function mainPage() {
   humidity_label.insertAdjacentHTML("beforeend", "Влажность");
   list.addEventListener("change", (event) => {
     const name = event.target.id.split("-")[1];
-    document.querySelector(`#weather-${name}`).hidden = !event.target.checked;
+    Array.from(document.querySelectorAll(`#weather-${name}`)).forEach(
+      (elem) => {
+        elem.hidden = !event.target.checked;
+      }
+    );
   });
+}
+
+// Выбор города
+function cityChoice() {
+  clear();
+  main = getMain();
+  cityForm = create("section", main, [["class", "auth"]]);
+
+  city = create("input", cityForm, [
+    ["id", "city_name"],
+    ["type", "text"],
+    ["placeholder", "Введите город"],
+  ]);
+
+  resume_btn = create("input", cityForm, [
+    ["type", "button"],
+    ["value", "Продолжить"],
+    ["style", "font-size: 0.8em"],
+  ]);
+
+  cityForm.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      setCity(city.value).then((res) => {
+        if (res) {
+          setCheckboxes();
+          mainPage();
+        } else {
+          alert("Город введён неверно");
+        }
+      });
+    }
+  });
+  resume_btn.addEventListener("click", () => {
+    setCity(city.value).then((res) => {
+      if (res) {
+        setCheckboxes();
+        mainPage();
+      } else {
+        alert("Город введён неверно");
+      }
+    });
+  });
+}
+
+const filters = [
+  "Дата",
+  "Температура",
+  "Ощущается как",
+  "Погодное описание",
+  "Скорость ветра",
+  "Влажность",
+];
+
+async function getCurrent(city) {
+  clear();
+  (await import("./model.js")).getCurrentWeather(city).then((res) => {
+    forecasts = create("section", main, [["class", "forecasts"]]);
+    forecast = create("section", forecasts);
+    time = create("p", forecast, [["id", `weather-${0}`]]);
+    time.innerHTML = `Время: ${res[0]}`;
+    for (let i = 1; i < 6; i++) {
+      p = create("p", forecast, [["id", `weather-${i}`]]);
+      p.innerHTML = `${filters[i]}: ${res[i]}`;
+    }
+    changeCheckboxes(true);
+    back = create("input", main, [
+      ["class", "back"],
+      ["type", "button"],
+      ["value", "Вернуться"],
+    ]);
+    back.addEventListener("click", () => {
+      mainPage();
+    });
+  });
+}
+
+async function getForecast(city, limit) {
+  clear();
+  (await import("./model.js")).getForecast(city, limit).then((res) => {
+    forecasts = create("section", main, [["class", "forecasts"]]);
+    for (let i = 0; i < res.length; i++) {
+      forecast = create("section", forecasts);
+      for (let j = 0; j < 6; j++) {
+        p = create("p", forecast, [["id", `weather-${j}`]]);
+        p.innerHTML = `${filters[j]}: ${res[i][j]}`;
+      }
+    }
+    changeCheckboxes(true);
+    back = create("input", main, [
+      ["class", "back"],
+      ["type", "button"],
+      ["value", "Вернуться"],
+    ]);
+    back.addEventListener("click", () => {
+      mainPage();
+    });
+  });
+}
+
+// Основная страница
+function mainPage() {
+  clear();
+  main = getMain();
   changeCheckboxes(false);
   choice = create("section", main, [["class", "choice"]]);
   current = create("input", choice, [
@@ -242,11 +270,21 @@ function mainPage() {
     ["value", "Прогноз на 3 дня"],
     ["style", "display: flex"],
   ]);
-  forecast3.addEventListener("click", () => {});
+  forecast3.addEventListener("click", () => {
+    getForecast(document.getElementById("city_name").innerHTML, 3).then(() => {
+      changeCheckboxes(true);
+      console.log("forecast3 success");
+    });
+  });
   forecast7 = create("input", choice, [
     ["type", "button"],
     ["value", "Прогноз на неделю"],
     ["style", "display: flex"],
   ]);
-  forecast7.addEventListener("click", () => {});
+  forecast7.addEventListener("click", () => {
+    getForecast(document.getElementById("city_name").innerHTML, 7).then(() => {
+      changeCheckboxes(true);
+      console.log("forecast7 success");
+    });
+  });
 }

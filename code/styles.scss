@@ -14,7 +14,7 @@ header {
     top: 1%;
     left: 1%;
     display: inline-block;
-    width: 280px;
+    width: 380px;
     height: 100px;
     //transform: translate(-50%, -50%);
     background: $white;
@@ -169,6 +169,31 @@ main {
     font-size: 1.5rem;
   }
 }
+.forecasts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 10px;
+  section {
+    padding: 10px;
+    margin: 10px;
+  }
+}
+.back {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  margin-top: 20px;
+  background: $white;
+  border-radius: 20px;
+  border-left: 1px solid $white;
+  border-top: 1px solid $white;
+  backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
 
 section {
   background: $white;
@@ -219,86 +244,11 @@ input {
   }
 }
 
-form {
-  background: $white;
-  padding: 3em;
-  border-radius: 20px;
-  border-left: 1px solid $white;
-  border-top: 1px solid $white;
-  backdrop-filter: blur(10px);
-  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  position: relative;
-  transition: all 0.2s ease-in-out;
-
-  p {
-    font-weight: 500;
-    color: #fff;
-    opacity: 0.7;
-    font-size: 1.4rem;
-    margin-top: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  &:hover {
-    margin: 4px;
-  }
-}
-
 ::placeholder {
   font-family: Montserrat, sans-serif;
   font-weight: 400;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.drop {
-  background: $white;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border-left: 1px solid $white;
-  border-top: 1px solid $white;
-  box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  transition: all 0.2s ease;
-
-  &-1 {
-    height: 80px;
-    width: 80px;
-    top: -20px;
-    left: -40px;
-    z-index: -1;
-  }
-
-  &-2 {
-    height: 80px;
-    width: 80px;
-    bottom: -30px;
-    right: -10px;
-  }
-
-  &-3 {
-    height: 100px;
-    width: 100px;
-    bottom: 120px;
-    right: -50px;
-    z-index: -1;
-  }
-
-  &-4 {
-    height: 120px;
-    width: 120px;
-    top: -60px;
-    right: -60px;
-  }
-
-  &-5 {
-    height: 60px;
-    width: 60px;
-    bottom: 170px;
-    left: 90px;
-    z-index: -1;
-  }
 }
 
 a,
