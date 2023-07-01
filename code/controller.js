@@ -1,16 +1,13 @@
-// import { fetchCords } from "./model.js";
-
+// Вывод чего-либо в консоль
 log = (element) => console.log(element);
-getBody = () => {
-  let body = document.getElementsByTagName("body")[0];
-  return body;
-};
 
+// Получение объекта с тегом main
 getMain = () => {
   let main = document.getElementsByTagName("main")[0];
   return main;
 };
 
+// Упрощение создания узлов
 create = (elem, parent, attrs) => {
   node = document.createElement(elem);
   if (attrs) {
@@ -22,6 +19,7 @@ create = (elem, parent, attrs) => {
   return node;
 };
 
+// Очистка рабочей области
 clear = () => {
   let main = getMain();
   for (let child of Array.from(main.children)) {
@@ -29,27 +27,21 @@ clear = () => {
   }
 };
 
+// Активация и деактивация чекбоксов
 function changeCheckboxes(condition) {
   Array.from(document.querySelectorAll(".filters")).forEach((elem) => {
     elem.disabled = !condition;
   });
 }
 
-function clear() {
-  body = getBody();
-  for (let child of Array.from(body.children)) {
-    if (!Array.from(arguments).includes(child)) {
-      body.removeChild(child);
-    }
-  }
-}
-
+// Приветственное сообщение
 welcome = (username) => {
   user_welcome = create("section", header, [["class", "user_welcome"]]);
   user = create("h1", user_welcome, [["id", "user"]]);
   user.innerHTML = `Добро пожаловать, ${username}`;
 };
 
+// Сохранение города
 async function setCity(city) {
   res = await (await import("./model.js")).fetchCords(city);
   if (res) {
@@ -96,6 +88,7 @@ window.onload = () => {
   });
 };
 
+// Инициализация чекбоксов
 function setCheckboxes() {
   list = create("ul", header, [["class", "list"]]);
   temp_label = create("label", list);
@@ -193,6 +186,7 @@ function cityChoice() {
   });
 }
 
+// Заголовки для понятного отображения
 const filters = [
   "Дата",
   "Температура",
@@ -202,6 +196,7 @@ const filters = [
   "Влажность",
 ];
 
+// Получение текущей погоды
 async function getCurrent(city) {
   clear();
   (await import("./model.js")).getCurrentWeather(city).then((res) => {
@@ -225,6 +220,7 @@ async function getCurrent(city) {
   });
 }
 
+// Получение прогноза погоды
 async function getForecast(city, limit) {
   clear();
   (await import("./model.js")).getForecast(city, limit).then((res) => {
