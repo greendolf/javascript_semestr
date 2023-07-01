@@ -4,68 +4,105 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-.logo {
+header {
+  display: block;
+  position: relative;
+  height: 160px;
+}
+header .logo {
   position: absolute;
   top: 1%;
   left: 1%;
-}
-.logo form {
-  width: 260px;
-  height: 80px;
-  padding: 1em;
-  text-align: right;
-  white-space: nowrap;
-}
-.logo form img {
   display: inline-block;
-  width: 100px;
+  width: 380px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  vertical-align: middle;
+}
+header .logo img {
+  display: inline-block;
+  width: 120px;
   height: auto;
-  text-align: left;
+  vertical-align: middle;
 }
-.logo form h1 {
-  display: inline-block;
-  vertical-align: top;
+header .logo h1 {
   margin: 0%;
+  display: inline-block;
+  text-align: right;
+  vertical-align: middle;
 }
-.logo form h1 a {
+header .logo h1 a {
   text-decoration: none;
   color: #ddd;
   font-size: 20px;
 }
-.logo form h1 a:hover {
+header .logo h1 a:hover {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2509803922);
 }
-.logo form h1 a:active {
+header .logo h1 a:active {
   text-shadow: none;
 }
-.logo form h2 {
+header .user_welcome {
+  position: absolute;
+  top: 1%;
+  left: 50%;
   display: inline-block;
+  width: 320px;
+  transform: translate(-50%, 0%);
   vertical-align: middle;
-  margin: 0%;
+}
+header .user_welcome h1 {
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.user_welcome {
+main {
+  display: block;
+}
+
+.city_section {
   position: absolute;
   transform: translate(-50%, 0%);
-  top: 2%;
+  top: 40%;
   left: 50%;
-  height: 80px;
+  width: 320px;
+  height: auto;
+  padding: 10px;
 }
-.user_welcome form {
-  height: 40px;
+.city_section h1 {
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.auth {
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-}
-
-form {
+  top: 1%;
+  right: 1%;
+  margin: 0%;
+  width: 180px;
   background: rgba(255, 255, 255, 0.3);
-  padding: 3em;
-  height: 140px;
+  padding: 0.5em;
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -73,20 +110,103 @@ form {
           backdrop-filter: blur(10px);
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
   text-align: center;
-  position: relative;
   transition: all 0.2s ease-in-out;
 }
-form p {
+.list label {
+  display: block;
+  text-align: left;
+  margin: 1%;
   font-weight: 500;
   color: #fff;
   opacity: 0.7;
-  font-size: 1.4rem;
-  margin-top: 0;
+  font-size: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-form input {
+.list label input {
+  display: inline;
+  margin: 0%;
+}
+
+.auth {
+  position: absolute;
+  display: inline;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 240px;
+  align-items: center;
+}
+.auth input[type=text] {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 20%;
+}
+.auth input[type=button] {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 20%;
+}
+
+.choice {
+  display: flex;
+  width: auto;
+  margin-top: 20px;
+  padding: 10px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.choice input {
+  font-size: 1.5rem;
+}
+
+.forecasts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 10px;
+}
+.forecasts section {
+  padding: 10px;
+  margin: 10px;
+}
+
+.back {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+section {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+input {
   background: transparent;
-  width: 180px;
   padding: 1em;
   margin-bottom: 2em;
   border: none;
@@ -102,27 +222,19 @@ form input {
   transition: all 0.2s ease-in-out;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-form input:hover {
+input:hover {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
 }
-form input[type=text]:focus {
+input[type=text]:focus {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
 }
-form input[type=button] {
-  margin-top: 10px;
-  width: 150px;
-  font-size: 1rem;
-}
-form input[type=button]:hover {
+input[type=button]:hover {
   cursor: pointer;
 }
-form input[type=button]:active {
+input[type=button]:active {
   background: rgba(255, 255, 255, 0.2);
-}
-form:hover {
-  margin: 4px;
 }
 
 ::-moz-placeholder {
@@ -137,51 +249,6 @@ form:hover {
   font-weight: 400;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.drop {
-  background: rgba(255, 255, 255, 0.3);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  transition: all 0.2s ease;
-}
-.drop-1 {
-  height: 80px;
-  width: 80px;
-  top: -20px;
-  left: -40px;
-  z-index: -1;
-}
-.drop-2 {
-  height: 80px;
-  width: 80px;
-  bottom: -30px;
-  right: -10px;
-}
-.drop-3 {
-  height: 100px;
-  width: 100px;
-  bottom: 120px;
-  right: -50px;
-  z-index: -1;
-}
-.drop-4 {
-  height: 120px;
-  width: 120px;
-  top: -60px;
-  right: -60px;
-}
-.drop-5 {
-  height: 60px;
-  width: 60px;
-  bottom: 170px;
-  left: 90px;
-  z-index: -1;
 }
 
 a,
